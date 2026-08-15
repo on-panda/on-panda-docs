@@ -43,12 +43,12 @@ flowchart LR
 这个拆分带来三个直接结果：
 
 - 切换模型时，只需按新模型的 response template 重建 `viewTokens`，不会改写已标注的 message。
-- prompt logprobs 与正文无法完全对齐时，只复用匹配区间的 token 和概率；未匹配文本仍可正常展示和编辑，但不伪造概率。
-- 一旦标注者开始编辑或续写，当前 `viewTokens` 会提升为新的 `generationTokens`，同时锁定对应的 generation response template，保证后续解析与实际发送给模型的前缀一致。
+- 当 logprobs tokens 与正文无法完全对齐时，只复用匹配区间的 token 和概率；未匹配文本仍可正常展示和编辑，但不伪造概率。
+- 一旦标注者开始编辑或续写，当前 `viewTokens` 会提升为新的 `generationTokens`，同时把 view response template 设为新的 generation response template，保证后续解析与实际发送给模型的前缀一致。
 
 ## Response template
 
-Response template 是面向单条 assistant 响应的双向适配器，不是负责渲染整段对话的 chat template。它提供两个核心操作：
+Response template 是面向单条 assistant message 的双向适配器，不是负责渲染整段对话的 chat template。它提供两个核心操作：
 
 ```mermaid
 flowchart LR
