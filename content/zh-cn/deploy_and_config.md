@@ -1,4 +1,4 @@
-# 部署和配置 on-panda-web 教程
+# 自己部署 on-panda-web 教程
 
 ## 前置要求
 - 安装 Node.js & npm & pnpm
