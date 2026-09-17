@@ -1,5 +1,5 @@
 
-# 核心设计
+# onPanda web app 核心设计
 
 onPanda 既要保留模型生成时的 token、概率和候选信息，又要让标注者编辑结构化的 `reasoning`、`content` 和 `tool_calls`。这两类信息并不总能直接对应：不同模型使用不同的特殊 token，API 可能已经解析了思考过程和工具调用，而 prompt logprobs 还可能包含额外 token、缺少部分内容或采用不同的切分方式。
 
