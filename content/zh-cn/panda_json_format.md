@@ -21,6 +21,8 @@
 }
 ```
 
+更多实际例子见 [on-panda-example-data 仓库中的 `panda_json` 目录](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json)，其中包含各种各样的 `.panda.json` 数据示例。
+
 先掌握这几个字段：
 
 - **`dialogs`**：对话集合，是一个对象。编号使用 `"1"`、`"2"` 这样的正整数字符串，按数值排序，从 1 开始，允许中间有空缺。
