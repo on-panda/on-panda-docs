@@ -21,6 +21,12 @@ onPanda 的进阶功能依赖的 API 请求参数有： `continue_final_message`
 
 可点击控制参数中 `API compatibility` 的 test 按钮，自动检查当前 API 及模型与上述 onPanda 所需特性的兼容性。做 `API compatibility` 测试时，推荐用 F12 打开页面 Inspection，在 Console 中查看测试请求及日志。
 
+或者使用脚本 [testApiOnPandaCompatibility.js](https://raw.githubusercontent.com/on-panda/on-panda/refs/heads/main/src/utils/testApiOnPandaCompatibility.js) 对 API `/models` 下的所有模型执行批量测试，例如：
+```bash
+curl -OfsSL https://raw.githubusercontent.com/on-panda/on-panda/refs/heads/main/src/utils/testApiOnPandaCompatibility.js && \
+node ./testApiOnPandaCompatibility.js --base_url https://api.inference.wandb.ai/v1 --api_key $WANDB_API_KEY
+```
+
 ## 推理工具支持情况
 
 vLLM 和 sglang 支持所有 onPanda 依赖的进阶功能。
@@ -30,10 +36,40 @@ enable_chunked_prefill: true
 max_num_batched_tokens: 2048  # 仍然遇到 CUDA OOM 则往小调
 ```
 
-llama.cpp、 ollama 支持除了 `prompt_logprobs` 外的所有功能。
+llama.cpp、 ollama 支持除了 `prompt_logprobs` 外的所有功能。即能正常渲染 token 概率，选择 top_logprobs 候选和支持模型续写操作。
 
 ## API 供应商支持情况
 版本 `2026-09-30`
+
+现有的API服务商对 onPanda 的兼容性评分，用户可自行使用脚本 [testApiOnPandaCompatibility.js](https://raw.githubusercontent.com/on-panda/on-panda/refs/heads/main/src/utils/testApiOnPandaCompatibility.js) 测试任何 API。
+
+#### 五星推荐
+支持 onPanda 的所有进阶功能，检查、把玩模型的绝佳 API，支持 `prompt_logprobs`(`更新词组概率和候选`) 功能
+
+[Wandb inference API](https://forge.coreweave.com/wandb/inference) 的以下模型：
+- moonshotai/Kimi-K2.7-Code
+- Qwen/Qwen3.8-27B
+- Qwen/Qwen3.6-35B-A3B
+- deepseek-ai/DeepSeek-V3.1
+- meta-llama/Llama-3.3-70B-Instruct
+- Qwen/Qwen3-30B-A3B-Instruct-2507
+
+
+### 四星推荐
+能正常渲染 token 概率，选择 top_logprobs 候选和支持模型续写操作，但不支持 `prompt_logprobs`。
+
+[together.ai serverless inference API](https://www.together.ai/serverless-inference) 的几乎大多数主流模型，包括：
+- zai-org/GLM-5.3
+- moonshotai/Kimi-K3
+- Qwen/Qwen3.8-2.4T-A95B
+- deepseek-ai/DeepSeek-V4.1-Flash
+
+[StepFun API](https://platform.stepfun.com/) 的大多数模型，包括：
+- step-5 系列
+- step-3.7-flash
+
+Tips：
+- 如果发现 API 有琐碎的 BUG，比如前置空格被吞掉，reasoning or tool_calls 字段没有 top_logprobs 等现象，可以考虑设置 `"stream": false` 模式再来测试一下。 
 
 
 
