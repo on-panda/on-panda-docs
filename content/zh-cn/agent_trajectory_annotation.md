@@ -10,6 +10,8 @@
 
 ### 标注界面和交互机制展示
 
+标注员在阅读模型输出时，定位首个不恰当的 token，从候选中点选替代项，或直接输入修正文本；onPanda 随即截断该位置之后的内容，让模型基于修正后的前缀继续生成。
+
 onPanda 标注 agent 轨迹的 UI：
 
 <center>
@@ -20,7 +22,7 @@ onPanda 标注 agent 轨迹的 UI：
 
 *标注员可在工具执行前，token-level 地修改 `reasoning` 和 `tool_calls`，并让模型基于修正后的前缀继续生成；随后批准执行修正过的 `tool_calls`，模型再根据真实的工具反馈继续生成后续轨迹。*
 
-onPanda 实际标注 agent 轨迹数据时的录屏演示：
+onPanda 实际标注 Agent 轨迹数据时的[录屏演示（从 1:42 开始）](https://youtu.be/0T4h4IUIZCM?t=102)：
 
 <center>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0T4h4IUIZCM?si=xX-W1SlEW8h5ZBQK&amp;start=102" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

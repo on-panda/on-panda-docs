@@ -10,6 +10,8 @@ Existing annotation tools support assigning attributes or adding textual feedbac
 
 ### Annotation interface and interaction
 
+While reading the model output, annotators locate the first inappropriate token and either select a replacement from the candidates or type the correction directly. onPanda then truncates the content after that position and lets the model continue from the corrected prefix.
+
 The onPanda interface for annotating agent trajectories:
 
 <center>
@@ -20,7 +22,7 @@ The onPanda interface for annotating agent trajectories:
 
 *Before a tool runs, annotators can edit `reasoning` and `tool_calls` at the token level and let the model continue from the corrected prefix. They can then approve the corrected tool calls, and the model continues the trajectory using real tool feedback.*
 
-A recording of agent trajectory annotation in onPanda:
+Watch the [agent trajectory annotation demo in onPanda (starting at 1:42)](https://youtu.be/0T4h4IUIZCM?t=102):
 
 <center>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0T4h4IUIZCM?si=xX-W1SlEW8h5ZBQK&amp;start=102" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
