@@ -27,6 +27,16 @@ curl -OfsSL https://raw.githubusercontent.com/on-panda/on-panda/refs/heads/main/
 node ./testApiOnPandaCompatibility.js --base_url https://api.inference.wandb.ai/v1 --api_key $WANDB_API_KEY
 ```
 
+## Response template 配置
+
+对 `reasoning` 和 `tool_calls` 使用续写功能时，需要匹配对应模型的 response template。在「自定义 API 配置」中：
+
+- 自动匹配：未指定 `response_template` 时，onPanda 会尝试根据 `chat_config.model` 自动匹配已支持的模板。
+- 手动配置：使用自定义模型别名时，可添加 `"response_template": {"name_or_path": "Qwen/Qwen3.6-35B-A3B"}`（与 `chat_config` 同级），填写对应模型的官方名称或 Hugging Face 仓库名。
+- 检查配置：在「高级控制 → Current API config JSON」中查看最终配置，确认 `response_template` 是否匹配到对应模型。
+
+支持的模型族和匹配规则见 [responseTemplates/index.js](https://github.com/on-panda/on-panda/blob/main/src/utils/responseTemplates/index.js)。若目标模型尚未支持，可以让 Coding Agent 按照 [responseTemplates/AGENTS.md](https://github.com/on-panda/on-panda/blob/main/src/utils/responseTemplates/AGENTS.md)，参考已有模板直接实现对应模型的支持。原理见[核心设计](core_design.md#response-template)。
+
 ## 推理工具支持情况
 
 vLLM 和 SGLang 支持所有 onPanda 依赖的进阶功能。

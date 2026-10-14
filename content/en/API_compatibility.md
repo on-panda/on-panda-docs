@@ -27,6 +27,16 @@ curl -OfsSL https://raw.githubusercontent.com/on-panda/on-panda/refs/heads/main/
 node ./testApiOnPandaCompatibility.js --base_url https://api.inference.wandb.ai/v1 --api_key $WANDB_API_KEY
 ```
 
+## Response template configuration
+
+Continuing generation within `reasoning` and `tool_calls` requires a response template that matches the model. In **Custom API configuration**:
+
+- Automatic matching: when `response_template` is omitted, onPanda tries to match a supported template using `chat_config.model`.
+- Manual configuration: when using a custom model alias, add `"response_template": {"name_or_path": "Qwen/Qwen3.6-35B-A3B"}` at the same level as `chat_config`, using the corresponding model's official name or Hugging Face repository ID.
+- Check the configuration: open **Advanced controls → Current API config JSON** to inspect the final configuration and confirm that `response_template` matches the intended model.
+
+See [responseTemplates/index.js](https://github.com/on-panda/on-panda/blob/main/src/utils/responseTemplates/index.js) for supported model families and matching rules. If your model is not supported yet, a coding agent can implement support by following the [response template tutorial and implementation rules](https://github.com/on-panda/on-panda/blob/main/src/utils/responseTemplates/AGENTS.md) and using existing templates as references. For the underlying design, see [Core Design](core_design.md#response-template).
+
 ## Inference tool support
 
 vLLM and SGLang support all the advanced features that onPanda depends on.
