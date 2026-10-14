@@ -6,9 +6,11 @@
 1. Agent 轨迹由工具调用和环境反馈交替组成，修改某一轮的工具调用，会导致原有后续轨迹通常不再适用，需要重新执行并生成后续轨迹
 2. Agent 时代，模型输出变得更加复杂——除了 `content`，还会有冗长的 `reasoning`，以及结构化的 `tool_calls`——这让标注员需要同时理解和修改思维链、工具参数，甚至环境状态，人工重写成本高。标注界面开发也变得棘手
 
-[onPanda](https://on-panda.github.io/research/) 作为 LLM alignment 数据标注工具，全面支持标注 Agent 轨迹数据，其差异化的理念是「纠正生成过程」，而不是「事后修改结果」。onPanda 支持动态地接入现有 agent 的运行环境，并高效地修改模型 reponse 中的 `reasoning`, `content` 和 `tool_calls`，从而在真实环境中交互式地标注 agent 轨迹，高效地获得 on-policy 的 SFT 和 preference 数据。
+[onPanda](https://on-panda.github.io/research/) 作为开源 LLM alignment 数据标注工具，全面支持标注 Agent 轨迹数据，其差异化的理念是「纠正生成过程」，而不是「事后修改结果」。onPanda 支持动态地接入现有 agent 的运行环境，并高效地修改模型 reponse 中的 `reasoning`, `content` 和 `tool_calls`，从而在真实环境中交互式地标注 agent 轨迹，高效地获得 on-policy 的 SFT 和 preference 数据。
 
-onPanda 标注 agent 轨迹的标注界面示意图：
+### 标注界面和交互机制展示
+
+onPanda 标注 agent 轨迹的 UI：
 
 <center>
     <a href="https://on-panda.github.io/img/fig2_agent-v4.png">
@@ -25,12 +27,16 @@ onPanda 实际标注 agent 轨迹数据时的录屏演示：
 </center>
 
 
+最后，请直接访问我们的[在线 Demo](https://onpanda.diyer22.com/)，点击 examples 里面的 `agent-annotate` 例子进行实际体验和测试。
+
+### 接入你自己的 agent 工具和运行环境
 onPanda 标注 agent 轨迹的过程依赖真实的环境反馈，可以通过两种方案来接入目标环境：
-1. onPanda  直接使用 MCP 协议接入 onPanda
- onPanda 是一个
+1. onPanda 原生支持 MCP 协议，MCP 协议的环境能直接接入 agent 标注流程里。
+2. 若目标环境是一个 harness，则可以通过 [harness_to_mcp](https://github.com/on-panda/harness_to_mcp) 技术，将 harness 里面的工具和环境包装成 MCP 协议，从而接入 onPanda 动态的标注流程中。
+    - harness_to_mcp 已经原生支持了 Claude Code、Codex、Open Code，若需要支持其它 harness，只需告诉 Coding Agent 克隆 harness_to_mcp ，支持上对应 harness 即可。
 
 
-通过 MCP。或者 [harness_to_mcp](https://github.com/on-panda/harness_to_mcp) 接入 harness 或者 agent 运行环境
+
 
 <center>
     <a href="https://x.com/diyerxx/status/2101020850405462041">
@@ -38,6 +44,7 @@ onPanda 标注 agent 轨迹的过程依赖真实的环境反馈，可以通过�
     </a>
 </center>
 
+### 标注范式革新带来多重优势
 
 onPanda 创新性地采用 token-level correction 的标柱形式，其具备多种优势：
 - 标注速度快
@@ -47,14 +54,12 @@ onPanda 创新性地采用 token-level correction 的标柱形式，其具备多
 - 对标注员负担小
 - 自定义标注支持 turn-level 的属性标注
 
+
+我们的论文 [onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction](https://arxiv.org/abs/2609.24983) 中有详细的实验和论述，欢迎查阅。
+
+### 开始自己的 agent 标注任务
 作为开源软件，onPanda 已经在 StepFun 内部生产了数十万条 SFT 和 preference 数据，包括 agent trajectories。且 onPanda 的代码是组件化和前后端分离的设计，核心组件可以被其他项目导入和复用，能方便地集成进现有的数据标注平台，参见 [onPanda integration examples](https://github.com/on-panda/on-panda/tree/main/apps/integration-example)。
 
-
-更多细节请查看我们研究项目主页： https://on-panda.github.io/research/
-
-并查阅我们的论文： [onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction](https://arxiv.org/abs/2609.24983)
-
-Why onPanda
 
 
 
