@@ -1,17 +1,26 @@
 # 使用 onPanda 高效地标注 Agent 轨迹数据
 **动态接入 Agent 运行环境，在线标注多轮带 `tool_calls` 与 `reasoning` 的 SFT、Preference 数据**
 
-<p align="center">
+<div align="center">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0T4h4IUIZCM?si=xX-W1SlEW8h5ZBQK&amp;start=102" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <br>
     <sub>观看 onPanda 实际标注 Agent 轨迹数据的<a href="https://youtu.be/0T4h4IUIZCM?t=102">录屏演示（从 1:42 开始）</a></sub>
-</p>
+
+<br>
+<br>
+</div>
 
 现有的 Agent 观测与标注工具（如 [Potato](https://github.com/davidjurgens/potato)、[Argilla](https://github.com/argilla-io/argilla) 等）大多支持对已完成的固定轨迹进行属性打标或添加文字反馈；但若要进一步修改轨迹、构造高质量的多轮 Agent SFT 数据，则面临两个核心难点：
 1. **环境状态耦合**：Agent 轨迹由工具调用（`tool_calls`）和环境反馈（`tool` 消息）交替组成。一旦修改某一轮的工具调用，原有的后续轨迹通常不再适用，必须在真实环境中执行修正后的调用，并基于新的环境反馈继续生成后续轨迹。
 2. **输出结构复杂**：在 Reasoning 与 Agent 时代，模型单轮输出不仅包含 `content`，还包含冗长的思维链 `reasoning` 以及结构化的 `tool_calls`。这要求标注员同时理解和修改推理过程与工具参数，人工重写成本极高，标注界面的交互设计也变得棘手。
 
 [**onPanda**](https://github.com/on-panda/on-panda)（[论文主页](https://on-panda.github.io/research/)）作为开源的 LLM 对齐数据标注工具，提出了「**在生成过程中实时纠错**」而非「事后重写结果」的标注范式。onPanda 支持动态接入现有 Agent 的真实运行环境，让标注员以 token 级精度高效修正模型响应中的 `reasoning`、`content` 和 `tool_calls`，在真实环境交互中同步产出高 on-policy 保真度的 SFT、Preference 及 Token-level 监督数据。
+
+<div align="center">
+
+### [在线 Demo 🎮](https://onpanda.diyer22.com/?example=agent-annotate) | [视频演示 ▶️](https://youtu.be/0T4h4IUIZCM) | [技术论文 📄](https://arxiv.org/abs/2609.24983) | [开源代码 👨‍💻](https://github.com/on-panda/on-panda)
+
+</div>
 
 ## 标注界面与交互机制展示
 
@@ -102,4 +111,6 @@ onPanda 已在阶跃星辰内部生产了数十万条对齐数据，覆盖图像
 - medium（IP 限制高， 明确禁止 GPTBot、ClaudeBot 等爬虫，OAI-SearchBot 才是 ChatGPT Search 的搜索爬虫，不能把两者混为一谈）
 - ？Hugging Face blog
 - ？r/LLMDevs （担心格式变形）
+
+都要加上 on-panda.github.io/agent-trajectory-annotation 的反链
  -->

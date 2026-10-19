@@ -1,17 +1,26 @@
 # Efficient Agent Trajectory Annotation with onPanda
 **Dynamically connect to agent environments and annotate multi-turn SFT and preference data with `tool_calls` and `reasoning` online**
 
-<p align="center">
+<div align="center">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0T4h4IUIZCM?si=xX-W1SlEW8h5ZBQK&amp;start=102" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <br>
     <sub>Watch the <a href="https://youtu.be/0T4h4IUIZCM?t=102">screen recording of agent trajectory annotation in onPanda (starting at 1:42)</a></sub>
-</p>
+
+<br>
+<br>
+</div>
 
 Existing agent observability and annotation tools (such as [Potato](https://github.com/davidjurgens/potato) and [Argilla](https://github.com/argilla-io/argilla)) mostly support assigning attributes or adding textual feedback to completed trajectories. However, editing trajectories to construct high-quality multi-turn agent SFT data presents two core challenges:
 1. **Coupled environment state**: Agent trajectories alternate between tool calls (`tool_calls`) and environment feedback (`tool` messages). Once a tool call in a given turn is modified, the original subsequent trajectory is usually no longer valid—the corrected call must be executed in the real environment, and generation must continue from the new feedback.
 2. **Complex output structure**: In the era of reasoning models and agents, a single model response contains not only `content`, but also lengthy `reasoning` chains and structured `tool_calls`. Annotators must understand and edit both the reasoning process and tool arguments, making manual rewriting costly and annotation UI design challenging.
 
 [**onPanda**](https://github.com/on-panda/on-panda) ([Project Page](https://on-panda.github.io/research/)) is an open-source LLM alignment data annotation tool built around the paradigm of **correcting the generation process in real time** rather than rewriting outputs after the fact. onPanda dynamically connects to real agent runtime environments, allowing annotators to efficiently edit `reasoning`, `content`, and `tool_calls` at the token level and produce SFT, preference, and token-level supervision data with high on-policy fidelity through real environment interaction.
+
+<div align="center">
+
+### [Live Demo 🎮](https://onpanda.diyer22.com/?example=agent-annotate) | [Video Demo ▶️](https://youtu.be/0T4h4IUIZCM) | [Paper 📄](https://arxiv.org/abs/2609.24983) | [Source Code 👨‍💻](https://github.com/on-panda/on-panda)
+
+</div>
 
 ## Annotation interface and interaction
 
