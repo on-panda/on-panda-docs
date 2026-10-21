@@ -85,7 +85,7 @@ onPanda 标注 Agent 轨迹依赖真实的环境反馈，支持通过两种方�
 - **显著降低标注员认知负担**：用户研究显示，onPanda 的 NASA-TLX 综合工作负荷评分仅为 **3.1**（显著低于偏好排序的 5.4 与人工后编辑的 6.8），token 概率染色还能辅助标注员快速定位模型不自信的潜在错误点。
 - **灵活的自定义属性标注**：同样支持 Turn-level / Dialog-level 的单选、多选、文本等自定义 Rubric 评价项。
 
-标注结果统一保存为单文件 `.panda.json`，可通过配套 [Python 库 `onpanda`](https://github.com/on-panda/on-panda-python) 一键解析导出 SFT、Preference 和 Token-level Correction 训练数据。完整的受控实验设计与数据分析欢迎查阅我们的论文：[onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction](https://arxiv.org/abs/2609.24983)。
+标注结果统一保存为单文件 `.panda.json`，可通过配套 [Python 库 `onpanda`](https://github.com/on-panda/on-panda-python) 一键解析导出 SFT、Preference 和 Token-level Correction 训练数据（另见 [Panda-CVL 数据集和 benchmark](https://on-panda.github.io/Panda-CVL/)）。完整的受控实验设计与数据分析欢迎查阅我们的论文：[onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction](https://arxiv.org/abs/2609.24983)。
 
 ## 开始你自己的 Agent 标注任务
 
