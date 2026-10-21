@@ -2,9 +2,17 @@
 **动态接入 Agent 运行环境，在线标注多轮带 `tool_calls` 与 `reasoning` 的 SFT、Preference 数据**
 
 <div align="center">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/0T4h4IUIZCM?si=xX-W1SlEW8h5ZBQK&amp;start=102" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe
+    width="560" height="315"
+    src="https://player.bilibili.com/player.html?isOutside=true&aid=117445176134008&bvid=BV1vpJ26kEef&cid=42769252661&p=1&autoplay=0&danmaku=1&high_quality=1&t=52"
+    title="onPanda: 数据标注新范式——标注效率翻倍、同时产出 SFT 和偏好数据"
+    scrolling="no" frameborder="0"
+    allowfullscreen="true"
+    allow="fullscreen; encrypted-media; picture-in-picture"
+    referrerpolicy="no-referrer-when-downgrade"
+    loading="lazy"></iframe>
     <br>
-    <sub>观看 onPanda 实际标注 Agent 轨迹数据的<a href="https://youtu.be/0T4h4IUIZCM?t=102">录屏演示（从 1:42 开始）</a></sub>
+    <sub>观看 onPanda 实际标注 Agent 轨迹数据的<a href="https://www.bilibili.com/video/BV1vpJ26kEef/?share_source=copy_web&vd_source=4b396381d3b6dfcea5d5963acf0a0c9f&t=52">录屏演示（从 00:52 开始）</a></sub>
 
 <br>
 <br>
@@ -113,4 +121,6 @@ onPanda 已在阶跃星辰内部生产了数十万条对齐数据，覆盖图像
 - ？r/LLMDevs （担心格式变形）
 
 都要加上 on-panda.github.io/agent-trajectory-annotation 的反链
+
+
  -->
