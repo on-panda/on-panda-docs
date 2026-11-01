@@ -4,7 +4,12 @@
 ## 支持的 LLM API 协议
 Chat Completions 协议是 onPanda 核心支持的 API 协议，尤其以 [vLLM 的 Chat Completions API](https://docs.vllm.ai/en/latest/serving/online_serving/openai_compatible_server/#chat-api) 为准。比如模型续写、prompt_logprobs 等 OpenAI 协议未定义的功能，都是用的 vLLM 定义的接口。
 
-除了 Chat Completions，还可以通过配置 API 的 `api_protocol` 字段，支持 Anthropic 的 [messages API](https://platform.claude.com/docs/en/api/messages)（`"api_protocol": {"protocol": "anthropic", "endpoint": "messages"}`）和 Google 的 [Gemini API](https://ai.google.dev/api/generate-content)（`"api_protocol": {"protocol": "gemini", "endpoint": "generateContent"}`）。这些非核心 API 协议都会通过 [utils/apiProtocols](https://github.com/on-panda/on-panda/tree/main/src/utils/apiProtocols/) 转换为 Chat Completions API。使用这些非核心的 API 协议只能做基础的 agent loop，不支持模型续写、logprobs 等 onPanda 进阶能力。
+除了 Chat Completions，还可以通过配置 API 的 `api_protocol` 字段，支持：
+- Anthropic 的 [messages API](https://platform.claude.com/docs/en/api/messages)（`"api_protocol": {"protocol": "anthropic", "endpoint": "messages"}`）
+- OpenAI 的 [Responses API](https://platform.openai.com/docs/api-reference/responses)（`"api_protocol": {"protocol": "openai", "endpoint": "responses"}`）
+- Google 的 [Gemini API](https://ai.google.dev/api/generate-content)（`"api_protocol": {"protocol": "gemini", "endpoint": "generateContent"}`）  
+
+这些非核心 API 协议都会通过 [utils/apiProtocols](https://github.com/on-panda/on-panda/tree/main/src/utils/apiProtocols/) 转换为 Chat Completions API。使用这些非核心的 API 协议只能做基础的 agent loop，不支持模型续写、logprobs 等 onPanda 进阶能力。
 
 ## 进阶请求参数及其对应作用
 

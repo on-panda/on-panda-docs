@@ -4,7 +4,12 @@
 
 Chat Completions is onPanda's primary API protocol, with [vLLM's Chat Completions API](https://docs.vllm.ai/en/latest/serving/online_serving/openai_compatible_server/#chat-api) serving as the reference. Features not defined by the OpenAI protocol, such as model continuation and `prompt_logprobs`, use the interfaces defined by vLLM.
 
-In addition to Chat Completions, you can configure the API's `api_protocol` field to use Anthropic's [Messages API](https://platform.claude.com/docs/en/api/messages) (`"api_protocol": {"protocol": "anthropic", "endpoint": "messages"}`) or Google's [Gemini API](https://ai.google.dev/api/generate-content) (`"api_protocol": {"protocol": "gemini", "endpoint": "generateContent"}`). These other API protocols are converted to the Chat Completions API through [utils/apiProtocols](https://github.com/on-panda/on-panda/tree/main/src/utils/apiProtocols/). They support only basic agent loops and do not support advanced onPanda features such as model continuation or logprobs.
+In addition to Chat Completions, you can configure the API's `api_protocol` field to use:
+- Anthropic's [Messages API](https://platform.claude.com/docs/en/api/messages) (`"api_protocol": {"protocol": "anthropic", "endpoint": "messages"}`)
+- OpenAI's [Responses API](https://platform.openai.com/docs/api-reference/responses) (`"api_protocol": {"protocol": "openai", "endpoint": "responses"}`) 
+- Google's [Gemini API](https://ai.google.dev/api/generate-content) (`"api_protocol": {"protocol": "gemini", "endpoint": "generateContent"}`)
+
+These other API protocols are converted to the Chat Completions API through [utils/apiProtocols](https://github.com/on-panda/on-panda/tree/main/src/utils/apiProtocols/). They support only basic agent loops and do not support advanced onPanda features such as model continuation or logprobs.
 
 ## Advanced request parameters and their roles
 
